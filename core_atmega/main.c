@@ -10,7 +10,10 @@
 
 //#define F_CPU 8000000UL  // set in the project properties
 #include "util/delay.h"
+#include "HD44780.h"
 
+
+static uint8_t buff_txt[15] = {'a', 'r', 'e', 'k'};
 
 int main(void)
 {
@@ -20,6 +23,11 @@ int main(void)
 	//DEBUG1_PIN_CONFIG;
 	//DEBUG2_PIN_CONFIG;
 
+	_delay_ms(100);		// Wait for stable power
+
+	HD44780_init();
+	HD44780_on();
+	HD44780_clear();
 	
     while (1) 
     {
@@ -29,7 +37,8 @@ int main(void)
 		DEBUG0_PIN_RESET;
 		_delay_ms(100);
 		
-		
+		HD44780_clear();
+		HD44780_puts(buff_txt);
     }
 }
 
