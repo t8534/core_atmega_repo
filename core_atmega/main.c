@@ -6,13 +6,30 @@
  */ 
 
 #include <avr/io.h>
+#include "debug.h"
+
+//#define F_CPU 8000000UL  // set in the project properties
+#include "util/delay.h"
 
 
 int main(void)
 {
-    /* Replace with your application code */
+	
+	// Debug pin init
+	DEBUG0_PIN_CONFIG;
+	//DEBUG1_PIN_CONFIG;
+	//DEBUG2_PIN_CONFIG;
+
+	
     while (1) 
     {
+		
+		DEBUG0_PIN_SET;
+		_delay_ms(100);
+		DEBUG0_PIN_RESET;
+		_delay_ms(100);
+		
+		
     }
 }
 
